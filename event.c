@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   event.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rkersten <rkersten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/16 17:28:43 by rkersten          #+#    #+#             */
+/*   Updated: 2023/06/16 17:30:13 by rkersten         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 static int	close_win(t_hook *data)
@@ -11,18 +23,19 @@ static int	close_win(t_hook *data)
 static void	display_move(t_hook *data)
 {
 	data->img = mlx_xpm_file_to_image(data->mlx_p, "./textures/Background.xpm",
-	&data->isize[X], &data->isize[Y]);
-	mlx_put_image_to_window(data->mlx_p, data->mlx_w, 
-	data->img, data->ppos[X] * IMG, data->ppos[Y] * IMG);
+			&data->isize[X], &data->isize[Y]);
+	mlx_put_image_to_window(data->mlx_p, data->mlx_w,
+		data->img, data->ppos[X] * IMG, data->ppos[Y] * IMG);
 	data->img = mlx_xpm_file_to_image(data->mlx_p, "./textures/Player.xpm",
-	&data->isize[X], &data->isize[Y]);
-	mlx_put_image_to_window(data->mlx_p, data->mlx_w, 
-	data->img, (data->ppos[X] + data->dir[X]) * IMG, (data->ppos[Y] + data->dir[Y]) * IMG);
+			&data->isize[X], &data->isize[Y]);
+	mlx_put_image_to_window(data->mlx_p, data->mlx_w,
+		data->img, (data->ppos[X] + data->dir[X]) * IMG,
+		(data->ppos[Y] + data->dir[Y]) * IMG);
 	data->ppos[X] += data->dir[X];
 	data->ppos[Y] += data->dir[Y];
 	data->move++;
 	ft_printf("Mouvements : %i\n", data->move);
-} 
+}
 
 static void	p_move(t_hook *data)
 {
@@ -71,7 +84,7 @@ static int	k_input(int key, t_hook *data)
 			if (key == 123)
 				data->dir[X] = -1;
 		}
-	 	p_move(data);
+		p_move(data);
 	}
 	return (0);
 }

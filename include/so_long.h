@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rkersten <rkersten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/16 17:42:27 by rkersten          #+#    #+#             */
+/*   Updated: 2023/06/16 17:42:27 by rkersten         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # include <fcntl.h>
@@ -14,8 +26,9 @@
 # define Y 1
 # define LMAX 80
 # define HMAX 45
-# define OnDestroy 17
-# define KeyPress 2
+# define ONDESTROY 17
+# define KEYPRESS 2
+# define VALIDE	13
 
 typedef struct t_struct
 {
@@ -25,9 +38,9 @@ typedef struct t_struct
 	size_t	mpos[2];
 	size_t	ppos[2];
 	size_t	item;
-} t_map;
+}	t_map;
 
-typedef struct t_struct3
+typedef struct t_struct1
 {
 	char	**map;
 	int		move;
@@ -39,7 +52,7 @@ typedef struct t_struct3
 	void	*img;
 	void	*mlx_p;
 	void	*mlx_w;
-} t_hook;
+}	t_hook;
 
 void	exit_err(int errnum);
 char	*get_next_line(int fd);

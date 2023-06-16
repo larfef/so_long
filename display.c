@@ -1,4 +1,16 @@
-# include "so_long.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   display.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rkersten <rkersten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/16 17:26:45 by rkersten          #+#    #+#             */
+/*   Updated: 2023/06/16 17:28:24 by rkersten         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "so_long.h"
 
 void	new_window(t_hook *data)
 {
@@ -7,19 +19,19 @@ void	new_window(t_hook *data)
 	size = 0;
 	while (data->map[size])
 		size++;
-	data->ipos[X] = 0;	
-	data->ipos[Y] = 0;	
+	data->ipos[X] = 0;
+	data->ipos[Y] = 0;
 	data->mlx_p = mlx_init();
-	data->mlx_w = mlx_new_window(data->mlx_p, 
-	ft_strlen(data->map[0]) * IMG, size * IMG, "So_long");
+	data->mlx_w = mlx_new_window(data->mlx_p,
+			ft_strlen(data->map[0]) * IMG, size * IMG, "So_long");
 }
 
 static void	display_img(t_hook *data, char *path)
 {
-	data->img = mlx_xpm_file_to_image(data->mlx_p, path, 
-	&data->isize[X], &data->isize[Y]);
-	mlx_put_image_to_window(data->mlx_p, data->mlx_w, data->img, 
-	data->ipos[X], data->ipos[Y]);
+	data->img = mlx_xpm_file_to_image(data->mlx_p, path,
+			&data->isize[X], &data->isize[Y]);
+	mlx_put_image_to_window(data->mlx_p, data->mlx_w, data->img,
+		data->ipos[X], data->ipos[Y]);
 }
 
 static void	load_img(t_hook *data, size_t col, size_t line)
@@ -58,4 +70,3 @@ void	init_display(t_hook *data, size_t col, size_t line)
 		init_display(data, col + 1, 0);
 	}
 }
-

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mapdup.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rkersten <rkersten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/16 17:35:01 by rkersten          #+#    #+#             */
+/*   Updated: 2023/06/16 17:35:01 by rkersten         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 static char	**map_to_buffer(int fd, size_t line)
@@ -25,6 +37,7 @@ static char	**map_to_buffer(int fd, size_t line)
 
 static size_t	nb_of_line(int fd)
 {
+	int		i;
 	char	*str;
 	size_t	line;
 
@@ -37,7 +50,8 @@ static size_t	nb_of_line(int fd)
 		line++;
 		str = get_next_line(fd);
 	}
-	if (close(fd) == -1)
+	i = close(fd);
+	if (i == -1)
 		exit_err(errno);
 	return (line);
 }
@@ -49,7 +63,8 @@ static char	**minfo(char *arg, int fd)
 	size_t	tab_size;
 
 	tab_size = nb_of_line(fd);
-	if (!(path = ft_strjoin("./maps/", arg)))
+	path = ft_strjoin("./maps/", arg);
+	if (!path)
 		exit(EXIT_FAILURE);
 	fd = open(path, O_RDONLY);
 	free(path);
@@ -60,7 +75,7 @@ static char	**minfo(char *arg, int fd)
 		exit_err(errno);
 	if (!tab)
 		exit(EXIT_FAILURE);
-	return(tab);
+	return (tab);
 }
 
 void	mdup(char *arg, t_map *data)
@@ -68,8 +83,9 @@ void	mdup(char *arg, t_map *data)
 	char	*path;
 	int		fd;
 
-	if (!(path = ft_strjoin("./maps/", arg)))
-		exit(EXIT_FAILURE);	
+	path = ft_strjoin("./maps/", arg);
+	if (!path)
+		exit(EXIT_FAILURE);
 	fd = open(path, O_RDONLY);
 	free(path);
 	if (fd == -1)

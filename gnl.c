@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   gnl.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rkersten <rkersten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/16 17:30:24 by rkersten          #+#    #+#             */
+/*   Updated: 2023/06/16 17:30:24 by rkersten         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
-# define BUFFER_SIZE 1
-# define SIZE 0
+#define BUFFER_SIZE 1
+#define SIZE 0
 
 static char	*ft_join(char *head, char *body)
 {
@@ -17,7 +29,7 @@ static char	*ft_read(char *join, char *buffer, int i, int fd)
 	{
 		i = read(fd, buffer, BUFFER_SIZE);
 		if (*buffer == '\n')
-			break;
+			break ;
 		else if (i == -1)
 		{
 			free(join);
